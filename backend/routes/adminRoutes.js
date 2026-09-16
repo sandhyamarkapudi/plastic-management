@@ -1,0 +1,1 @@
+const router=require('express').Router();const c=require('../controllers/adminController');const {authenticate,requireAdmin}=require('../middleware/auth');router.use(authenticate,requireAdmin);router.get('/dashboard',c.dashboard);router.get('/users',c.listUsers);router.get('/feedback',c.listFeedback);module.exports=router;

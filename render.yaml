@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: plastic-awareness-platform
+    runtime: node
+    rootDir: .
+    buildCommand: npm ci --prefix backend
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: plastic_awareness
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://plastic-awareness-platform.onrender.com

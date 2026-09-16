@@ -1,0 +1,9 @@
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const users = require('../models/userModel');
+const clean = value => String(value || '').trim();
+function token(user) { return jwt.sign({ id: user.id, role: user.role, name: user.name }, process.env.JWT_SECRET, { expiresIn: '7d' }); }
+async function register(req,res) { try { const name=clean(req.body.name), mobile=clean(req.body.mobile), village=clean(req.body.village), district=clean(req.body.district), password=String(req.body.password||''); if (!name||!/^[0-9]{10,15}$/.test(mobile)||!village||!district||password.length<6) return res.status(400).json({success:false,message:'Please enter valid details. Password must be at least 6 characters.'}); if (await users.findByMobile(mobile)) return res.status(409).json({success:false,message:'This mobile number is already registered.'}); const user=await users.create({name,mobile,village,district,password:await bcrypt.hash(password,12)}); res.status(201).json({success:true,user,token:token(user)}); } catch(e) { res.status(500).json({success:false,message:'Registration failed.'}); } }
+async function login(req,res) { try { const user=await users.findByMobile(clean(req.body.mobile)); if (!user || !(await bcrypt.compare(String(req.body.password||''),user.password))) return res.status(401).json({success:false,message:'Mobile number or password is incorrect.'}); const safe=await users.findById(user.id); res.json({success:true,user:safe,token:token(safe)}); } catch(e) { res.status(500).json({success:false,message:'Login failed.'}); } }
+async function profile(req,res) { const user=await users.findById(req.params.id); if(!user) return res.status(404).json({success:false,message:'User not found.'}); res.json({success:true,user}); }
+module.exports = { register, login, profile };

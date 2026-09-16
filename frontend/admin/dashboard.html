@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | EcoVillage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-shell">
+  <div id="site-nav"></div>
+
+  <main data-admin-page class="admin-main section py-4">
+    <div class="container">
+      <!-- WELCOME HERO -->
+      <div class="callout-banner mb-4 p-4 p-md-5">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>
+            <span class="badge-soft badge-soft-emerald mb-2" style="background: rgba(255,255,255,0.2); color:#ffffff; border-color: rgba(255,255,255,0.3);">
+              <i class="fa-solid fa-gauge"></i> Executive Overview
+            </span>
+            <h1 class="h2 text-white mb-1">Good Day, Platform Administrator.</h1>
+            <p class="text-white-50 mb-0">Monitor learner engagement, community feedback, and educational content across villages.</p>
+          </div>
+          <button class="btn btn-light btn-sm" type="button" onclick="adminLogout()">
+            <i class="fa-solid fa-power-off text-danger"></i> Logout
+          </button>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="small text-muted fw-semibold">Registered Learners</span>
+              <span class="badge-soft badge-soft-emerald"><i class="fa-solid fa-users"></i></span>
+            </div>
+            <div class="stat-number" data-stat="users">0</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="small text-muted fw-semibold">Content Guides</span>
+              <span class="badge-soft badge-soft-blue"><i class="fa-solid fa-newspaper"></i></span>
+            </div>
+            <div class="stat-number" data-stat="content" style="color: var(--accent-cyan);">0</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="small text-muted fw-semibold">Quiz Questions</span>
+              <span class="badge-soft badge-soft-amber"><i class="fa-solid fa-circle-question"></i></span>
+            </div>
+            <div class="stat-number" data-stat="questions" style="color: var(--accent-amber);">0</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="small text-muted fw-semibold">Feedback Messages</span>
+              <span class="badge-soft badge-soft-rose"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            <div class="stat-number" data-stat="feedback" style="color: var(--accent-rose);">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANAGEMENT ACTIONS GRID -->
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card p-4 h-100 border-0 shadow-sm" style="border-radius: var(--radius-lg);">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <span class="eyebrow mb-1"><i class="fa-solid fa-sliders"></i> Control Center</span>
+                <h2 class="h4 mb-0">Platform Management</h2>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <a class="card p-3 h-100 text-decoration-none border shadow-xs" href="content.html">
+                  <div class="card-icon" style="width:44px; height:44px; font-size:1.1rem;">
+                    <i class="fa-solid fa-file-pen"></i>
+                  </div>
+                  <h3 class="h6 text-dark mb-1">Awareness Content</h3>
+                  <p class="small text-muted mb-0">Publish or remove learning guides & posters.</p>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a class="card p-3 h-100 text-decoration-none border shadow-xs" href="quiz-management.html">
+                  <div class="card-icon card-icon-amber" style="width:44px; height:44px; font-size:1.1rem;">
+                    <i class="fa-solid fa-list-check"></i>
+                  </div>
+                  <h3 class="h6 text-dark mb-1">Quiz Questions</h3>
+                  <p class="small text-muted mb-0">Review the awareness assessment bank.</p>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a class="card p-3 h-100 text-decoration-none border shadow-xs" href="users.html">
+                  <div class="card-icon card-icon-blue" style="width:44px; height:44px; font-size:1.1rem;">
+                    <i class="fa-solid fa-id-card"></i>
+                  </div>
+                  <h3 class="h6 text-dark mb-1">Registered Users</h3>
+                  <p class="small text-muted mb-0">Inspect enrolled village learners.</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card p-4 h-100 border-0 shadow-sm" style="border-radius: var(--radius-lg);">
+            <span class="eyebrow mb-2"><i class="fa-solid fa-bullhorn"></i> Village Insights</span>
+            <h2 class="h4 mb-2">Community Feedback</h2>
+            <p class="small text-muted mb-4">
+              Review real-world feedback from villagers, self-help groups, and panchayat leaders to tailor future campaigns.
+            </p>
+            <a class="btn btn-primary w-100 mt-auto" href="feedback.html">
+              <span>View All Feedback</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

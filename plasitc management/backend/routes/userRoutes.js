@@ -1,0 +1,1 @@
+const router=require('express').Router();const c=require('../controllers/userController');const {authenticate}=require('../middleware/auth');router.post('/register',c.register);router.post('/login',c.login);router.get('/:id',authenticate,c.profile);module.exports=router;

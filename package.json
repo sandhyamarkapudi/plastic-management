@@ -1,0 +1,13 @@
+{
+  "name": "plastic-awareness-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:backend": "npm --prefix backend install",
+    "start": "npm --prefix backend start",
+    "backend": "npm --prefix backend start",
+    "backend:dev": "npm --prefix backend run dev",
+    "frontend": "npx --yes http-server frontend -p 5500 -c-1",
+    "check": "npm --prefix backend run check"
+  }
+}

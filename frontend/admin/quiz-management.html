@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz Management | Admin EcoVillage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="admin-shell">
+  <div id="site-nav"></div>
+
+  <main data-admin-page class="section py-4">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-list-check"></i> Assessment Bank</span>
+          <h1 class="h3 mb-0">Quiz Questions & Key Answers</h1>
+        </div>
+        <a href="dashboard.html" class="btn btn-soft btn-sm">
+          <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+        </a>
+      </div>
+
+      <div id="questionList" class="row g-3">
+        <div class="col-12 text-center py-5">
+          <div class="spinner-border text-success" role="status"></div>
+          <p class="small text-muted mt-2">Loading assessment questions...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.querySelector('#questionList');
+      try {
+        const r = await api('/quiz');
+        if (r && r.data && r.data.length) {
+          container.innerHTML = r.data.map((q, i) => `
+            <div class="col-md-6">
+              <div class="card p-4 h-100 border-0 shadow-xs">
+                <span class="badge-soft badge-soft-emerald mb-2" style="width: fit-content;">
+                  Question #${i + 1}
+                </span>
+                <h2 class="h5 mb-3">${q.question}</h2>
+                <div class="p-3 bg-light rounded-3 small mb-2">
+                  <div><strong>A:</strong> ${q.option_a}</div>
+                  <div><strong>B:</strong> ${q.option_b}</div>
+                  <div><strong>C:</strong> ${q.option_c}</div>
+                  <div><strong>D:</strong> ${q.option_d}</div>
+                </div>
+                ${q.correct_option ? `<div class="mt-auto small fw-bold text-success"><i class="fa-solid fa-check me-1"></i> Correct Option: ${q.correct_option.toUpperCase()}</div>` : ''}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          container.innerHTML = '<div class="col-12"><div class="alert alert-info border-0">No questions seeded in the database.</div></div>';
+        }
+      } catch (e) {
+        container.innerHTML = '<div class="col-12"><div class="alert alert-warning border-0">Question management is active when connected to the backend database.</div></div>';
+      }
+    });
+  </script>
+</body>
+</html>

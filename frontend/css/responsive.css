@@ -1,0 +1,153 @@
+/* ==========================================================================
+   RESPONSIVE REFINEMENTS & MOBILE UTILITIES
+   ========================================================================== */
+
+/* Keep navigation in one horizontal line on smaller screens */
+@media (max-width: 1399.98px) {
+  .site-navbar .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    overflow: visible;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+
+  .site-navbar .navbar-nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    margin: 0 0 0 5rem !important;
+    flex-shrink: 0;
+  }
+
+  .site-navbar .nav-item,
+  .site-navbar .nav-link,
+  .site-navbar .navbar-collapse > .d-flex {
+    flex-shrink: 0;
+  }
+
+  .site-navbar .navbar-collapse > .d-flex {
+    margin: 0 !important;
+    flex-wrap: nowrap;
+  }
+
+  .site-navbar .navbar-toggler {
+    display: none;
+  }
+
+  .impact-strip {
+    margin-top: -1.5rem;
+  }
+
+  .impact-item {
+    padding: 0.6rem 0.2rem;
+  }
+}
+
+/* Large Tablets & Small Laptops (<= 991px) */
+@media (max-width: 991.98px) {
+
+/* Mobile Screens (<= 767.98px) */
+@media (max-width: 767.98px) {
+  .hero {
+    padding: 4.5rem 0 3.5rem;
+    text-align: center;
+  }
+
+  .hero p.lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero .d-flex {
+    justify-content: center;
+  }
+
+  .hero-chips {
+    justify-content: center;
+  }
+
+  .hero-visual-card {
+    margin-top: 2rem;
+  }
+
+  .impact-strip-container {
+    padding: 1.25rem 1rem;
+  }
+
+  .page-head {
+    text-align: center;
+    padding: 3rem 0 2.2rem;
+  }
+
+  .section {
+    padding: 3.2rem 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.2rem;
+  }
+
+  .quiz-shell {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .quiz-option {
+    padding: 0.85rem 1rem;
+  }
+
+  .do-card, .dont-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .action-list li {
+    font-size: 0.96rem;
+  }
+
+  .bin-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .callout-banner {
+    text-align: center;
+  }
+
+  .custom-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    min-width: unset;
+  }
+}
+
+/* Very Small Mobile (< 576px) */
+@media (max-width: 575.98px) {
+  h1 { font-size: 2.1rem; }
+  h2 { font-size: 1.65rem; }
+  h3 { font-size: 1.3rem; }
+
+  .btn {
+    width: 100%;
+  }
+
+  .btn-sm {
+    width: 100%;
+  }
+
+  .hero-pill {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .hero-chip {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .star-rating-widget {
+    font-size: 1.5rem;
+  }
+}
