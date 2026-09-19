@@ -9,5 +9,8 @@
     "backend:dev": "npm --prefix backend run dev",
     "frontend": "npx --yes http-server frontend -p 5500 -c-1",
     "check": "npm --prefix backend run check"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.1"
   }
 }
