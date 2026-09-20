@@ -3,7 +3,7 @@ services:
     name: plastic-awareness-platform
     runtime: node
     rootDir: .
-    buildCommand: npm ci --prefix backend
+    buildCommand: npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "install:backend": "npm --prefix backend install",
+    "build": "npm --prefix backend ci",
     "start": "npm --prefix backend start",
     "backend": "npm --prefix backend start",
     "backend:dev": "npm --prefix backend run dev",

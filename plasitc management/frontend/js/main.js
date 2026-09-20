@@ -1,4 +1,6 @@
-const API_URL = localStorage.getItem('apiUrl') || 'http://localhost:5000/api';
+const localApiUrl = `${window.location.protocol}//${window.location.hostname}:5000/api`;
+const defaultApiUrl = window.location.port === '5500' ? localApiUrl : '/api';
+const API_URL = window.__API_URL__ || localStorage.getItem('apiUrl') || defaultApiUrl;
 
 const navItems = [
   ['index.html', 'Home', 'fa-house'],
