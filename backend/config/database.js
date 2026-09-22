@@ -1,4 +1,6 @@
 const mysql = require('mysql2/promise');
+const fs = require('fs');
+const path = require('path');
 require('./env');
 
 const pool = mysql.createPool({
@@ -18,5 +20,21 @@ async function verifyConnection() {
   connection.release();
 }
 
+async function initializeSchema() {
+  const schema = fs.readFileSync(path.resolve(__dirname, '../../database/schema.sql'), 'utf8');
+  const statements = schema
+    .split(';')
+    .map(statement => statement.trim())
+    .filter(statement => statement && !/^CREATE DATABASE\b/i.test(statement) && !/^USE\b/i.test(statement));
+  for (const statement of statements) {
+    if (/^INSERT INTO quiz_questions\b/i.test(statement)) {
+      const [rows] = await pool.query('SELECT COUNT(*) AS count FROM quiz_questions');
+      if (rows[0].count > 0) continue;
+    }
+    await pool.query(statement);
+  }
+}
+
 module.exports = pool;
 module.exports.verifyConnection = verifyConnection;
+module.exports.initializeSchema = initializeSchema;

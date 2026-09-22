@@ -19,6 +19,7 @@ const port=process.env.PORT||5000;
 async function start() {
 	try {
 				await db.verifyConnection();
+				await db.initializeSchema();
 				app.listen(port,()=>console.log(`Plastic awareness server listening on port ${port}`));
 	} catch (error) {
 		console.error('Unable to connect to MySQL. Check the project .env values and make sure MySQL is running.');
