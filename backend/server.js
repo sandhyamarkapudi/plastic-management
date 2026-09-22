@@ -1,7 +1,10 @@
 require('./config/env');
 const express=require('express');const cors=require('cors');const path=require('path');
 const db=require('./config/database');
-const allowedOrigins=(process.env.CORS_ORIGIN||'').split(',').map(origin=>origin.trim()).filter(Boolean);
+const allowedOrigins=[
+	...(process.env.CORS_ORIGIN||'').split(',').map(origin=>origin.trim()).filter(Boolean),
+	'https://plastic-awareness-platform-production.up.railway.app'
+];
 const corsOptions={
 	origin(origin, callback) {
 		if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
